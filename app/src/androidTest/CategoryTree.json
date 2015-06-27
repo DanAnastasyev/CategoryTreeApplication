@@ -1,0 +1,86 @@
+[
+    {
+		"id": 1,
+		"parentId": 0,
+		"childIds": [2, 3, 4],
+		"name": "Категории"
+	},
+	{
+		"id": 2,
+		"parentId": 1,
+		"childIds": [5, 6],
+		"name": "Одежда"
+	},
+	{
+		"id": 3,
+		"parentId": 1,
+		"childIds": [7, 8],
+		"name": "Обувь и аксессуары"
+	},
+	{
+		"id": 4,
+		"parentId": 1,
+		"childIds": [9, 10],
+		"name": "Товары для детей"
+	},
+	{
+		"id": 5,
+		"parentId": 2,
+		"childIds": [11, 12],
+		"name": "Верх"
+	},
+	{
+		"id": 6,
+		"parentId": 2,
+		"childIds": [],
+		"name": "Низ"
+	},
+	{
+		"id": 7,
+		"parentId": 3,
+		"childIds": [13],
+		"name": "Обувь"
+	},
+	{
+		"id": 8,
+		"parentId": 3,
+		"childIds": [14],
+		"name": "Аксессуары"
+	},
+	{
+		"id": 9,
+		"parentId": 4,
+		"childIds": [],
+		"name": "Одежда"
+	},
+	{
+		"id": 10,
+		"parentId": 4,
+		"childIds": [],
+		"name": "Детская обувь"
+	},
+    {
+		"id": 11,
+		"parentId": 5,
+		"childIds": [],
+		"name": "Водолазки"
+    },
+    {
+		"id": 12,
+		"parentId": 5,
+		"childIds": [],
+		"name": "Жилеты"
+    },
+    {
+		"id": 13,
+		"parentId": 7,
+		"childIds": [],
+		"name": "Босоножки"
+    },
+    {
+		"id": 14,
+		"parentId": 8,
+		"childIds": [],
+		"name": "Бабочки"
+    }
+]
