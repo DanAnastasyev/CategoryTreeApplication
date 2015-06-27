@@ -43,7 +43,10 @@ public class FolderStructureFragment extends Fragment {
                 Log.e(TAG, "Error in creating CategoryTree", e);
             }
 
-            tView.addNode(root, mCategoryTree.getRoot());
+            // Приделываем все полученные корни древьев к корню
+            for (TreeNode rootNode: mCategoryTree.getRoot()) {
+                tView.addNode(root, rootNode);
+            }
         }
     }
 
@@ -62,6 +65,7 @@ public class FolderStructureFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_default, null, false);
         ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.container);
 
+        // Использую готовую библиотеку для вывода древовидной структуры
         root = TreeNode.root();
 
         tView = new AndroidTreeView(getActivity(), root);

@@ -95,7 +95,7 @@ public class CategoryTree {
         }
     }
 
-    public TreeNode getRoot() {
-        return roots.get(0);
+    public ArrayList<Node> getRoot() {
+        return roots;
     }
 }

@@ -20,7 +20,7 @@ public class JSONDownloader {
     private static final String ENDPOINT = "https://raw.githubusercontent.com/DanAnastasyev/" +
             "CategoryTreeApplication/master/app/src/androidTest/CategoryTree.json";
 
-    public String getBytesFromUrl(String urlSpec) throws IOException, JSONException {
+    private String getBytesFromUrl(String urlSpec) throws IOException, JSONException {
         URL url = new URL(urlSpec);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -43,6 +43,7 @@ public class JSONDownloader {
         }
     }
 
+    // Скачивает json с забитого адреса
     public JSONArray getJSONArray() {
         String url = Uri.parse(ENDPOINT).buildUpon()
                 //.appendQueryParameter("method", METHOD_GET_CATEGORY_TREE)
