@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,11 +15,11 @@ import java.net.URL;
 
 public class JSONDownloader {
     private static final String TAG = "JSONDownloader";
-    // С таким адресом загружать не получилось
-    //private static final String ENDPOINT = "http://oorraa.com/api";
-    //private static final String METHOD_GET_CATEGORY_TREE = "categories.getCategoryTree";
-    private static final String ENDPOINT = "https://raw.githubusercontent.com/DanAnastasyev/" +
-            "CategoryTreeApplication/master/app/src/androidTest/CategoryTree.json";
+    private static final String ENDPOINT = "http://oorraa.com/api";
+    private static final String METHOD_GET_CATEGORY_TREE = "categories.getCategoryTree";
+    private static final String PARAMS = "{\"locale\":\"ru\"}";
+    //private static final String ENDPOINT = "https://raw.githubusercontent.com/DanAnastasyev/" +
+    //        "CategoryTreeApplication/master/app/src/androidTest/CategoryTree.json";
 
     private String getBytesFromUrl(String urlSpec) throws IOException, JSONException {
         URL url = new URL(urlSpec);
@@ -44,13 +45,14 @@ public class JSONDownloader {
     }
 
     // Скачивает json с забитого адреса
-    public JSONArray getJSONArray() {
+    public JSONObject getJSONObject() {
         String url = Uri.parse(ENDPOINT).buildUpon()
-                //.appendQueryParameter("method", METHOD_GET_CATEGORY_TREE)
+                .appendQueryParameter("method", METHOD_GET_CATEGORY_TREE)
+                .appendQueryParameter("params", PARAMS)
                 .build().toString();
 
         try {
-            return new JSONArray(getBytesFromUrl(url));
+            return new JSONObject(getBytesFromUrl(url));
         } catch (IOException e) {
             Log.e(TAG, "Error in downloading JSON", e);
         } catch (JSONException e) {

@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class CategoryTree {
@@ -22,14 +23,16 @@ public class CategoryTree {
 
         public Node(JSONObject jsonObject) throws JSONException {
             super(new IconTreeItemHolder.IconTreeItem(R.string.ic_drive_file,
-                    jsonObject.getString("name")));
+                    jsonObject.getString("localizedName")));
 
-            id = jsonObject.getInt("id");
-            name = jsonObject.getString("name");
+            id = jsonObject.getInt("categoryId");
+            name = jsonObject.getString("localizedName");
             parentId = jsonObject.getInt("parentId");
-            JSONArray jsonArray = jsonObject.getJSONArray("childIds");
-            for (int i = 0; i < jsonArray.length(); ++i) {
-                childIds.add(jsonArray.getInt(i));
+            if (jsonObject.has("childCategories")) {
+                JSONArray jsonArray = jsonObject.getJSONArray("childCategories");
+                for (int i = 0; i < jsonArray.length(); ++i) {
+                    childIds.add(jsonArray.getInt(i));
+                }
             }
         }
     }
@@ -87,11 +90,11 @@ public class CategoryTree {
         }
     }
 
-    public CategoryTree(JSONArray jsonArray) throws JSONException {
-        for (int i = 0; i < jsonArray.length(); ++i) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            Node newNode = new Node(jsonObject);
-            addNode(newNode);
+    public CategoryTree(JSONObject jsonObject) throws JSONException {
+        JSONObject result = jsonObject.getJSONObject("result");
+        Iterator<String> iterator = result.keys();
+        while (iterator.hasNext()) {
+            addNode(new Node(result.getJSONObject(iterator.next())));
         }
     }
 

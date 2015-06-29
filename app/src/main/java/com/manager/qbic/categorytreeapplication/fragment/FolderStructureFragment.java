@@ -21,6 +21,7 @@ import com.unnamed.b.atv.view.AndroidTreeView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class FolderStructureFragment extends Fragment {
     private static final String TAG = "MainFragment";
@@ -28,17 +29,17 @@ public class FolderStructureFragment extends Fragment {
     private CategoryTree mCategoryTree;
     private TreeNode root;
 
-    private class DownloadItemsTask extends AsyncTask<Void, Void, JSONArray> {
+    private class DownloadItemsTask extends AsyncTask<Void, Void, JSONObject> {
         @Override
-        protected JSONArray doInBackground(Void... params) {
+        protected JSONObject doInBackground(Void... params) {
             JSONDownloader downloader = new JSONDownloader();
-            return downloader.getJSONArray();
+            return downloader.getJSONObject();
         }
 
         @Override
-        protected void onPostExecute(JSONArray jsonArray) {
+        protected void onPostExecute(JSONObject jsonObject) {
             try {
-                mCategoryTree = new CategoryTree(jsonArray);
+                mCategoryTree = new CategoryTree(jsonObject);
             } catch (JSONException e) {
                 Log.e(TAG, "Error in creating CategoryTree", e);
             }
